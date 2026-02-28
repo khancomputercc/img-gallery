@@ -62,6 +62,7 @@
             border: none;
             cursor: pointer;
             font-weight: 500;
+            font-size: 1rem;
         }
 
         .admin-btn:hover {
@@ -76,6 +77,7 @@
             border: none;
             cursor: pointer;
             font-weight: 500;
+            font-size: 1rem;
         }
 
         .logout-btn:hover {
@@ -107,6 +109,208 @@
         .hero p {
             font-size: 1.2rem;
             opacity: 0.9;
+        }
+
+        /* Admin Section */
+        .admin-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        /* Login Form */
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: #e53e3e;
+        }
+
+        .btn-danger:hover {
+            background: #c53030;
+            box-shadow: 0 5px 15px rgba(229, 62, 62, 0.4);
+        }
+
+        .btn-success {
+            background: #38a169;
+            margin-bottom: 1rem;
+        }
+
+        .btn-success:hover {
+            background: #2f855a;
+            box-shadow: 0 5px 15px rgba(56, 161, 105, 0.4);
+        }
+
+        .message {
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            border: 1px solid #fc8181;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        /* Upload Area */
+        .upload-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f7fafc;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #ebf4ff;
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .upload-area p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        .upload-area small {
+            color: #718096;
+            font-size: 0.875rem;
+        }
+
+        #imagePreview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .remove-preview {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e53e3e;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        .remove-preview:hover {
+            background: #c53030;
         }
 
         /* Gallery Section */
@@ -229,249 +433,6 @@
             color: white;
         }
 
-        /* Admin Panel */
-        .admin-panel {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1500;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .admin-panel.active {
-            display: flex;
-        }
-
-        .admin-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-admin {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #666;
-            z-index: 1;
-        }
-
-        .close-admin:hover {
-            color: #333;
-        }
-
-        .admin-content h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-            padding-right: 2rem;
-        }
-
-        /* Login Form */
-        .login-form {
-            display: block;
-        }
-
-        .upload-form {
-            display: none;
-        }
-
-        .admin-content.logged-in .login-form {
-            display: none;
-        }
-
-        .admin-content.logged-in .upload-form {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .password-input {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #667eea;
-            font-size: 1.2rem;
-        }
-
-        .btn {
-            background: #667eea;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-
-        .btn:hover {
-            background: #5a67d8;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-danger {
-            background: #e53e3e;
-        }
-
-        .btn-danger:hover {
-            background: #c53030;
-            box-shadow: 0 5px 15px rgba(229, 62, 62, 0.4);
-        }
-
-        .btn-success {
-            background: #38a169;
-        }
-
-        .btn-success:hover {
-            background: #2f855a;
-            box-shadow: 0 5px 15px rgba(56, 161, 105, 0.4);
-        }
-
-        .upload-area {
-            border: 2px dashed #cbd5e0;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #f7fafc;
-        }
-
-        .upload-area:hover {
-            border-color: #667eea;
-            background: #ebf4ff;
-        }
-
-        .upload-area i {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .upload-area p {
-            color: #4a5568;
-            font-size: 1rem;
-        }
-
-        .upload-area small {
-            color: #718096;
-            font-size: 0.875rem;
-        }
-
-        #imagePreview {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 0.5rem;
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background: #f7fafc;
-            border-radius: 8px;
-        }
-
-        .preview-item {
-            position: relative;
-            aspect-ratio: 1;
-        }
-
-        .preview-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .remove-preview {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #e53e3e;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-            border: 2px solid white;
-        }
-
-        .remove-preview:hover {
-            background: #c53030;
-        }
-
-        .message {
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .error-message {
-            background: #fed7d7;
-            color: #c53030;
-            border: 1px solid #fc8181;
-        }
-
-        .success-message {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 1px solid #9ae6b4;
-        }
-
         /* Loading Spinner */
         .spinner {
             display: none;
@@ -489,15 +450,16 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Admin Status */
-        .admin-status {
-            display: inline-block;
-            margin-left: 10px;
-            font-size: 0.875rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            background: #c6f6d5;
-            color: #22543d;
+        /* Welcome Message */
+        .welcome-message {
+            background: #ebf4ff;
+            color: #2c5282;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         /* Responsive */
@@ -531,7 +493,7 @@
                 width: 100%;
             }
             
-            .admin-content {
+            .admin-section {
                 padding: 1.5rem;
             }
         }
@@ -546,7 +508,7 @@
             <a href="#gallery">Gallery</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <button id="adminToggleBtn" class="admin-btn" onclick="toggleAdminPanel()">Admin Login</button>
+            <button id="adminToggleBtn" class="admin-btn" onclick="toggleAdminSection()">Admin Login</button>
         </div>
     </nav>
 
@@ -556,6 +518,57 @@
         <section id="home" class="hero">
             <h1>Welcome to ImageGallery</h1>
             <p>Discover amazing images uploaded by our community</p>
+        </section>
+
+        <!-- Admin Section (appears directly on page) -->
+        <section id="adminSection" class="admin-section">
+            <!-- Login Form -->
+            <div id="loginForm" class="login-form">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" placeholder="Enter password">
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="login()">Login</button>
+                <button class="btn btn-danger" onclick="hideAdminSection()" style="margin-top: 0.5rem;">Cancel</button>
+                <div class="message error-message" id="loginError"></div>
+            </div>
+            
+            <!-- Upload Form -->
+            <div id="uploadForm" class="upload-form" style="display: none;">
+                <div class="welcome-message">
+                    <span>Welcome, Admin!</span>
+                    <button class="btn-danger" onclick="logout()" style="width: auto; padding: 0.5rem 1rem;">Logout</button>
+                </div>
+                
+                <h2>Upload Images</h2>
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <i>📁</i>
+                    <p>Click or drag images to upload</p>
+                    <small>Supported: JPG, PNG, GIF (Max 5MB each)</small>
+                    <input type="file" id="fileInput" multiple accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+                </div>
+                
+                <div id="imagePreview"></div>
+                
+                <div class="form-group">
+                    <label for="imageTitle">Image Title (Optional)</label>
+                    <input type="text" id="imageTitle" placeholder="Enter image title">
+                </div>
+                
+                <button class="btn btn-success" onclick="uploadImages()">Upload Images</button>
+                <button class="btn btn-danger" onclick="hideAdminSection()">Close</button>
+                
+                <div class="message success-message" id="uploadSuccess"></div>
+                <div class="message error-message" id="uploadError"></div>
+            </div>
         </section>
 
         <!-- Gallery Section -->
@@ -579,55 +592,6 @@
             <button class="close-modal" onclick="closeModal()">&times;</button>
             <img id="modalImage" src="" alt="">
             <div class="modal-info" id="modalInfo"></div>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-content" id="adminContent">
-            <button class="close-admin" onclick="closeAdminPanel()">&times;</button>
-            
-            <!-- Login Form -->
-            <div id="loginForm" class="login-form">
-                <h2>Admin Login</h2>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="password" placeholder="Enter password">
-                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-                    </div>
-                </div>
-                <button class="btn" onclick="login()">Login</button>
-                <div class="message error-message" id="loginError"></div>
-            </div>
-            
-            <!-- Upload Form -->
-            <div id="uploadForm" class="upload-form">
-                <h2>Upload Images</h2>
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <i>📁</i>
-                    <p>Click or drag images to upload</p>
-                    <small>Supported: JPG, PNG, GIF (Max 5MB each)</small>
-                    <input type="file" id="fileInput" multiple accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
-                </div>
-                
-                <div id="imagePreview"></div>
-                
-                <div class="form-group">
-                    <label for="imageTitle">Image Title (Optional)</label>
-                    <input type="text" id="imageTitle" placeholder="Enter image title">
-                </div>
-                
-                <button class="btn btn-success" onclick="uploadImages()">Upload Images</button>
-                <button class="btn btn-danger" onclick="logout()">Logout</button>
-                
-                <div class="message success-message" id="uploadSuccess"></div>
-                <div class="message error-message" id="uploadError"></div>
-            </div>
         </div>
     </div>
 
@@ -670,15 +634,42 @@
             }
         }
 
-        // Toggle admin panel
-        function toggleAdminPanel() {
-            if (isLoggedIn) {
-                // If logged in, open upload panel directly
-                openAdminPanel();
+        // Toggle admin section
+        function toggleAdminSection() {
+            const adminSection = document.getElementById('adminSection');
+            
+            if (adminSection.classList.contains('active')) {
+                hideAdminSection();
             } else {
-                // If not logged in, open login panel
-                openAdminPanel();
+                showAdminSection();
             }
+        }
+
+        // Show admin section
+        function showAdminSection() {
+            const adminSection = document.getElementById('adminSection');
+            adminSection.classList.add('active');
+            
+            // Scroll to admin section
+            adminSection.scrollIntoView({ behavior: 'smooth' });
+            
+            if (isLoggedIn) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('uploadForm').style.display = 'block';
+            } else {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('uploadForm').style.display = 'none';
+                // Clear login fields
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('loginError').style.display = 'none';
+            }
+        }
+
+        // Hide admin section
+        function hideAdminSection() {
+            document.getElementById('adminSection').classList.remove('active');
+            clearUploadForm();
         }
 
         // Display images in gallery
@@ -721,29 +712,6 @@
         // Close modal
         function closeModal() {
             document.getElementById('imageModal').classList.remove('active');
-        }
-
-        // Open admin panel
-        function openAdminPanel() {
-            document.getElementById('adminPanel').classList.add('active');
-            
-            if (isLoggedIn) {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('uploadForm').style.display = 'block';
-            } else {
-                document.getElementById('loginForm').style.display = 'block';
-                document.getElementById('uploadForm').style.display = 'none';
-                // Clear login fields
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-                document.getElementById('loginError').style.display = 'none';
-            }
-        }
-
-        // Close admin panel
-        function closeAdminPanel() {
-            document.getElementById('adminPanel').classList.remove('active');
-            clearUploadForm();
         }
 
         // Toggle password visibility
@@ -791,8 +759,8 @@
             // Update admin button
             updateAdminButton();
             
-            // Close admin panel
-            closeAdminPanel();
+            // Hide admin section
+            hideAdminSection();
             
             // Clear upload form
             clearUploadForm();
@@ -911,14 +879,9 @@
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
-            const adminPanel = document.getElementById('adminPanel');
             
             if (event.target === modal) {
                 closeModal();
-            }
-            
-            if (event.target === adminPanel) {
-                closeAdminPanel();
             }
         }
 
@@ -972,13 +935,6 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-
-        // Prevent form submission on enter key
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-            }
         });
     </script>
 </body>

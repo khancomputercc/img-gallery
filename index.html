@@ -462,6 +462,15 @@
             align-items: center;
         }
 
+        /* Image Count Badge */
+        .image-count {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .navbar {
@@ -574,7 +583,9 @@
         <!-- Gallery Section -->
         <section id="gallery" class="gallery-section">
             <div class="gallery-header">
-                <h2>Image Gallery</h2>
+                <h2>Image Gallery 
+                    <span class="image-count" id="imageCount">0</span>
+                </h2>
                 <input type="text" class="search-box" placeholder="Search images..." onkeyup="searchImages(this.value)">
             </div>
             
@@ -596,22 +607,86 @@
     </div>
 
     <script>
-        // Admin credentials (change these to your preferred username and password)
+        // Admin credentials
         const ADMIN_USERNAME = "admin";
         const ADMIN_PASSWORD = "admin123";
         
-        // Store images in localStorage
-        let images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+        // ডেমো ইমেজ (সবাই দেখতে পাবে)
+        const DEMO_IMAGES = [
+            {
+                data: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
+                title: 'Mountain Landscape',
+                date: '2024-01-15'
+            },
+            {
+                data: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400',
+                title: 'Forest Sunrise',
+                date: '2024-01-16'
+            },
+            {
+                data: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400',
+                title: 'Beautiful Sunset',
+                date: '2024-01-17'
+            },
+            {
+                data: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
+                title: 'Nature Valley',
+                date: '2024-01-18'
+            },
+            {
+                data: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400',
+                title: 'Mountain Lake',
+                date: '2024-01-19'
+            },
+            {
+                data: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400',
+                title: 'Foggy Forest',
+                date: '2024-01-20'
+            }
+        ];
+
+        // গ্লোবাল ইমেজ স্টোরেজ (সবাই একই ইমেজ দেখবে)
+        let images = [];
+
+        // লোকাল স্টোরেজ থেকে ইমেজ লোড করা
+        function loadImages() {
+            const savedImages = localStorage.getItem('galleryImages');
+            if (savedImages) {
+                try {
+                    images = JSON.parse(savedImages);
+                } catch (e) {
+                    console.error('Error loading images:', e);
+                    images = [];
+                }
+            } else {
+                // প্রথমবার ব্যবহার করলে ডেমো ইমেজ দেখাবে
+                images = [...DEMO_IMAGES];
+                saveImages();
+            }
+            updateImageCount();
+            displayImages(images);
+        }
+
+        // ইমেজ সেভ করা
+        function saveImages() {
+            localStorage.setItem('galleryImages', JSON.stringify(images));
+        }
+
+        // ইমেজ কাউন্ট আপডেট
+        function updateImageCount() {
+            document.getElementById('imageCount').textContent = images.length;
+        }
+
         let isLoggedIn = false;
         let selectedFiles = [];
 
         // Initialize gallery
         function initGallery() {
-            displayImages(images);
+            loadImages();
             checkLoginStatus();
         }
 
-        // Check login status on page load
+        // Check login status
         function checkLoginStatus() {
             const savedStatus = localStorage.getItem('adminLoggedIn');
             if (savedStatus === 'true') {
@@ -620,7 +695,7 @@
             }
         }
 
-        // Update admin button based on login status
+        // Update admin button
         function updateAdminButton() {
             const adminBtn = document.getElementById('adminToggleBtn');
             if (isLoggedIn) {
@@ -650,7 +725,6 @@
             const adminSection = document.getElementById('adminSection');
             adminSection.classList.add('active');
             
-            // Scroll to admin section
             adminSection.scrollIntoView({ behavior: 'smooth' });
             
             if (isLoggedIn) {
@@ -659,7 +733,6 @@
             } else {
                 document.getElementById('loginForm').style.display = 'block';
                 document.getElementById('uploadForm').style.display = 'none';
-                // Clear login fields
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
                 document.getElementById('loginError').style.display = 'none';
@@ -672,7 +745,7 @@
             clearUploadForm();
         }
 
-        // Display images in gallery
+        // Display images
         function displayImages(imagesToShow) {
             const galleryGrid = document.getElementById('galleryGrid');
             
@@ -683,7 +756,7 @@
             
             galleryGrid.innerHTML = imagesToShow.map((image, index) => `
                 <div class="gallery-item" onclick="openImageModal('${image.data}', '${image.title || 'Untitled'}', '${image.date}')">
-                    <img src="${image.data}" alt="${image.title || 'Gallery image'}">
+                    <img src="${image.data}" alt="${image.title || 'Gallery image'}" loading="lazy">
                     <div class="image-info">
                         <strong>${image.title || 'Untitled'}</strong>
                         <br>
@@ -714,13 +787,13 @@
             document.getElementById('imageModal').classList.remove('active');
         }
 
-        // Toggle password visibility
+        // Toggle password
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
         }
 
-        // Login function
+        // Login
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -731,14 +804,11 @@
                 localStorage.setItem('adminLoggedIn', 'true');
                 errorDiv.style.display = 'none';
                 
-                // Switch to upload form
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('uploadForm').style.display = 'block';
                 
-                // Update admin button
                 updateAdminButton();
                 
-                // Clear login fields
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
             } else {
@@ -747,22 +817,16 @@
             }
         }
 
-        // Logout function
+        // Logout
         function logout() {
             isLoggedIn = false;
             localStorage.setItem('adminLoggedIn', 'false');
             
-            // Switch to login form
             document.getElementById('loginForm').style.display = 'block';
             document.getElementById('uploadForm').style.display = 'none';
             
-            // Update admin button
             updateAdminButton();
-            
-            // Hide admin section
             hideAdminSection();
-            
-            // Clear upload form
             clearUploadForm();
         }
 
@@ -770,7 +834,6 @@
         function handleFileSelect(event) {
             const files = Array.from(event.target.files);
             
-            // Filter images and check size (max 5MB)
             const validFiles = files.filter(file => {
                 if (!file.type.startsWith('image/')) {
                     alert(`${file.name} is not an image file`);
@@ -787,7 +850,7 @@
             displayPreview();
         }
 
-        // Display image preview
+        // Display preview
         function displayPreview() {
             const preview = document.getElementById('imagePreview');
             if (selectedFiles.length === 0) {
@@ -803,7 +866,7 @@
             `).join('');
         }
 
-        // Remove file from selection
+        // Remove file
         function removeFile(index) {
             selectedFiles.splice(index, 1);
             displayPreview();
@@ -821,14 +884,11 @@
             const successDiv = document.getElementById('uploadSuccess');
             const errorDiv = document.getElementById('uploadError');
             
-            // Hide any previous messages
             successDiv.style.display = 'none';
             errorDiv.style.display = 'none';
             
-            // Show loading
             document.getElementById('loadingSpinner').style.display = 'block';
             
-            // Process each file
             let processed = 0;
             selectedFiles.forEach(file => {
                 const reader = new FileReader();
@@ -843,20 +903,18 @@
                     processed++;
                     
                     if (processed === selectedFiles.length) {
-                        // Save to localStorage
-                        localStorage.setItem('galleryImages', JSON.stringify(images));
+                        // Save to localStorage (সবাই দেখতে পাবে)
+                        saveImages();
                         
                         // Update gallery
                         displayImages(images);
+                        updateImageCount();
                         
-                        // Hide loading
                         document.getElementById('loadingSpinner').style.display = 'none';
                         
-                        // Show success message
                         successDiv.textContent = `${processed} image(s) uploaded successfully!`;
                         successDiv.style.display = 'block';
                         
-                        // Clear form
                         setTimeout(() => {
                             successDiv.style.display = 'none';
                         }, 3000);
@@ -885,7 +943,7 @@
             }
         }
 
-        // Handle drag and drop
+        // Drag and drop
         const uploadArea = document.querySelector('.upload-area');
         if (uploadArea) {
             uploadArea.addEventListener('dragover', (e) => {
@@ -923,10 +981,10 @@
             });
         }
 
-        // Initialize gallery on load
+        // Initialize
         document.addEventListener('DOMContentLoaded', initGallery);
 
-        // Smooth scrolling for navigation
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
